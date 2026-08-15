@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Ferretería Yopal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        /* --- NAVBAR GLOBAL --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 6%;
+            background: #18222d;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #f39c12;
+        }
+
+        .navbar nav a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .navbar nav a:hover {
+            color: #f39c12;
+        }
+
+        /* --- CONTENEDOR Y LAYOUT DEL CARRITO --- */
+        .container {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .cart-title {
+            font-size: 1.8rem;
+            color: #18222d;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 850px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* --- TARJETA DE PRODUCTO EN LA LISTA --- */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .cart-item img {
+            width: 90px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1rem;
+            color: #1a252f;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-details .precio-item {
+            color: #d35400;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Controles de Cantidad (+ / -) */
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 3px;
+            margin-right: 15px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .qty-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .qty-num {
+            padding: 0 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-remove {
+            background: #f87171;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .btn-remove:hover {
+            background: #dc2626;
+        }
+
+        /* --- TARJETA DE RESUMEN DE COMPRA --- */
+        .cart-summary {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 90px;
+        }
+
+        .cart-summary h3 {
+            font-size: 1.2rem;
+            color: #18222d;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        .summary-divider {
+            border: 0;
+            height: 1px;
+            background: #e5e7eb;
+            margin: 15px 0;
+        }
+
+        .summary-row.total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #18222d;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 13px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-checkout:hover {
+            background: #1eb857;
+        }
+
+        .btn-clear {
+            width: 100%;
+            background: #64748b;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">Ferretería<span>Yopal</span></a>
+        <nav>
+            <a href="index.html">← Volver al Catálogo</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="cart-title">Tu Carrito de Compras</h2>
+
+        <div class="cart-layout">
+            <!-- Columna Izquierda: Lista de Productos -->
+            <div class="cart-items-container" id="cart-items">
+                <!-- Rellenado dinámicamente desde script.js -->
+            </div>
+
+            <!-- Columna Derecha: Tarjeta de Resumen -->
+            <div class="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal-val">$0 COP</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío en Yopal</span>
+                    <span id="envio-val">$10.000 COP</span>
+                </div>
+                <hr class="summary-divider">
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total-val">$0 COP</span>
+                </div>
+
+                <button class="btn-checkout" onclick="enviarPedidoWhatsApp()">
+                    💬 Finalizar Pedido por WhatsApp
+                </button>
+
+                <button class="btn-clear" onclick="vaciarCarrito()">
+                    Vaciar Carrito
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof renderizarCarrito === 'function') {
+                renderizarCarrito();
+            }
+        });
+    </script>
+</body>
+
+</html>
