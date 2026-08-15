@@ -205,3 +205,36 @@ function filtrarCategoria(categoria, boton) {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.btn-filter');
+    const products = document.querySelectorAll('.card-producto');
+
+    // Función para filtrar por categoría
+    const filterProducts = (categoria) => {
+        products.forEach(product => {
+            if (product.dataset.categoria === categoria) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    };
+
+    // 1. Mostrar la primera categoría (Herramientas) por defecto al cargar
+    filterProducts('herramientas');
+
+    // 2. Escuchar clics en los botones de categoría
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remover clase 'active' de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Agregar clase 'active' al botón seleccionado
+            button.classList.add('active');
+
+            // Filtrar los productos por la categoría seleccionada
+            const targetCategory = button.dataset.categoria;
+            filterProducts(targetCategory);
+        });
+    });
+});

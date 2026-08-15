@@ -64,13 +64,18 @@
         </div>
 
         <!-- Filtro de Categorías -->
-    <div class="categories-bar">
-        <button class="cat-btn active" onclick="filtrarCategoria('herramientas', this)">Herramientas</button>
-        <button class="cat-btn" onclick="filtrarCategoria('construccion', this)">Construcción</button>
-        <button class="cat-btn" onclick="filtrarCategoria('electricidad', this)">Electricidad</button>
-        <button class="cat-btn" onclick="filtrarCategoria('tuberia-pvc', this)">Tubería PVC</button>
-        <button class="cat-btn" onclick="filtrarCategoria('promociones', this)">Promociones</button>
-    </div>
+<!-- Botones de Filtro de Categorías -->
+<div class="category-filters">
+    <button class="btn-filter" data-categoria="herramientas">Herramientas</button>
+    <button class="btn-filter" data-categoria="construccion">Construcción</button>
+    <button class="btn-filter" data-categoria="electricos">Eléctricos</button>
+    <button class="btn-filter" data-categoria="tuberia-pvc">Tubería PVC</button>
+    <button class="btn-filter" data-categoria="pinturas">Pinturas</button>
+    <button class="btn-filter" data-categoria="sifones">Sifones y Plomería</button>
+    <button class="btn-filter" data-categoria="registros">Registros y Llaves</button>
+    <button class="btn-filter" data-categoria="mallas">Mallas</button>
+    <button class="btn-filter" data-categoria="seguridad">Seguridad (EPP)</button>
+</div>
         <!-- Lista de Productos -->
         <div class="grid-productos">
             <div class="card-producto" data-categoria="herramientas">
@@ -83,7 +88,7 @@
                     🛒 Agregar al Carrito
                 </button>
             </div>
-            <!-- Producto: Tubo PVC 1/2" -->
+            <!-- Categoría: Tubería PVC -->
             <div class="card-producto" data-categoria="tuberia-pvc">
                 <img src="imagenes.jpg/tubo-pvc-media.jpg" alt="Tubos PVC 1/2&quot;">
                 <h3>Tubos PVC 1/2"</h3>
@@ -92,7 +97,7 @@
                     🛒 Agregar al Carrito
                 </button>
             </div>
-
+            <!-- Categoría: Herramientas -->
             <div class="card-producto" data-categoria="herramientas">
                 <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?q=80&w=500"
                     alt="Juego de Llaves">
@@ -103,7 +108,7 @@
                     🛒 Agregar al Carrito
                 </button>
             </div>
-
+            <!-- Categoría: Construcción -->
             <div class="card-producto" data-categoria="construccion">
                 <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=500" alt="Cemento Gris">
                 <h3>Bulto Cemento Gris 50kg</h3>
@@ -113,7 +118,7 @@
                     🛒 Agregar al Carrito
                 </button>
             </div>
-
+            <!-- Categoría: Electricidad -->
             <div class="card-producto" data-categoria="electricidad">
                 <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=500" alt="Cable Eléctrico">
                 <h3>Rollo Cable Eléctrico 100m</h3>
@@ -123,16 +128,53 @@
                     🛒 Agregar al Carrito
                 </button>
             </div>
-
-            <div class="card-producto" data-categoria="promociones">
-                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=500" alt="Promoción Especial">
-                <h2> Tornilleria Drywall</h2>
-                <h3>Promoción Especial - 20% Descuento</h3>
-                <p class="precio">$99.000 COP</p>
-                <button class="btn-add"
-                    onclick="agregarAlCarrito(5, 'Promoción Especial - 20% Descuento', 99000, 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=500')">
-                    🛒 Agregar al Carrito
-                </button>
+            <!-- Categoría: Pinturas -->
+            <div class="card-producto" data-categoria="pinturas">
+                <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500" alt="Pintura Vinilo Tipo 1">
+                <h3>Pintura Vinilo Tipo 1 (1 Galón)</h3>
+                <p class="precio">$65.000 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+            
+            <!-- Categoría: Sifones y Plomería -->
+            <div class="card-producto" data-categoria="sifones">
+                <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=500"
+                    alt="Sifón Flexible Lavamanos/Lavatrastes">
+                <h3>Sifón Flexible de Acordeón 1 1/2"</h3>
+                <p class="precio">$12.000 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+            
+            <!-- Categoría: Registros y Llaves -->
+            <div class="card-producto" data-categoria="registros">
+                <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=500" alt="Llave de Paso / Registro">
+                <h3>Registro de Agua Pesado 1/2" Bola</h3>
+                <p class="precio">$28.000 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+            
+            <!-- Categoría: Mallas y Cerramientos -->
+            <div class="card-producto" data-categoria="mallas">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Malla Eslabonada Galvanizada">
+                <h3>Malla Eslabonada Galvanizada (Rollo)</h3>
+                <p class="precio">$180.000 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+            
+            <!-- Categoría: Eléctricos -->
+            <div class="card-producto" data-categoria="electricos">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500" alt="Cable Eléctrico THHN 12">
+                <h3>Cable Eléctrico THHN #12 (Metro)</h3>
+                <p class="precio">$3.500 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
+            </div>
+            
+            <!-- Categoría Sugerida: Seguridad y Protección (EPP) -->
+            <div class="card-producto" data-categoria="seguridad">
+                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500" alt="Casco de Seguridad Industrial">
+                <h3>Casco de Seguridad Industrial Díelectrico</h3>
+                <p class="precio">$25.000 COP</p>
+                <button class="btn-agregar">Agregar al Carrito</button>
             </div>
         </div>
     </section>
